@@ -20,28 +20,33 @@
     var CONFIG = {"hostname":"blog.rrmai.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Technology Sharing">
-<meta property="og:url" content="http://blog.rrmai.com/index.html">
+  <meta name="description" content="1. Protobuf 是什么？Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据描述语言，用于描述一种轻便高效的结构化数据存储格式，并于2008年对外开源。Protobuf可以用于结构化数据串行化，或者说序列化。它的设计非常适用于在网络通讯中的数据载体，很适合做数据存储或 RPC 数据交换格式，它序列化出来的数据量少再加上以 K-V 的方式来存储数据，对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="protobuf 语言指北">
+<meta property="og:url" content="http://blog.rrmai.com/2020/12/21/protobuf-%E8%AF%AD%E8%A8%80%E6%8C%87%E5%8C%97/index.html">
 <meta property="og:site_name" content="Technology Sharing">
+<meta property="og:description" content="1. Protobuf 是什么？Protobuf是Protocol Buffers的简称，它是Google公司开发的一种数据描述语言，用于描述一种轻便高效的结构化数据存储格式，并于2008年对外开源。Protobuf可以用于结构化数据串行化，或者说序列化。它的设计非常适用于在网络通讯中的数据载体，很适合做数据存储或 RPC 数据交换格式，它序列化出来的数据量少再加上以 K-V 的方式来存储数据，对">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-21T07:52:52.000Z">
+<meta property="article:modified_time" content="2020-12-21T10:00:06.021Z">
 <meta property="article:author" content="mai">
+<meta property="article:tag" content="protobuf">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.rrmai.com/">
+<link rel="canonical" href="http://blog.rrmai.com/2020/12/21/protobuf-%E8%AF%AD%E8%A8%80%E6%8C%87%E5%8C%97/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Technology Sharing</title>
+  <title>protobuf 语言指北 | Technology Sharing</title>
   
 
 
@@ -177,9 +182,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -195,10 +201,9 @@
       <meta itemprop="name" content="Technology Sharing">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/21/protobuf-%E8%AF%AD%E8%A8%80%E6%8C%87%E5%8C%97/" class="post-title-link" itemprop="url">protobuf 语言指北</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          protobuf 语言指北
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -231,7 +236,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-Protobuf-是什么？"><a href="#1-Protobuf-是什么？" class="headerlink" title="1. Protobuf 是什么？"></a>1. Protobuf 是什么？</h1><p>Protobuf是Protocol Buffers的简称，它是Google公司开发的一种<strong>数据描述语言</strong>，用于描述一种轻便高效的<strong>结构化数据存储格式</strong>，并于2008年对外开源。Protobuf可以用于结构化数据串行化，或者说<strong>序列化</strong>。它的设计非常适用于在网络通讯中的数据载体，很适合做数据存储或 RPC 数据交换格式，它序列化出来的<strong>数据量少</strong>再加上以 <strong>K-V 的方式来存储数据</strong>，对消息的版本兼容性非常强，可用于通讯协议、数据存储等领域的语言无关、平台无关、可扩展的序列化结构数据格式。开发者可以通过Protobuf附带的工具生成代码并实现将结构化数据序列化的功能。 </p>
+        <h1 id="1-Protobuf-是什么？"><a href="#1-Protobuf-是什么？" class="headerlink" title="1. Protobuf 是什么？"></a>1. Protobuf 是什么？</h1><p>Protobuf是Protocol Buffers的简称，它是Google公司开发的一种<strong>数据描述语言</strong>，用于描述一种轻便高效的<strong>结构化数据存储格式</strong>，并于2008年对外开源。Protobuf可以用于结构化数据串行化，或者说<strong>序列化</strong>。它的设计非常适用于在网络通讯中的数据载体，很适合做数据存储或 RPC 数据交换格式，它序列化出来的<strong>数据量少</strong>再加上以 <strong>K-V 的方式来存储数据</strong>，对消息的版本兼容性非常强，可用于通讯协议、数据存储等领域的语言无关、平台无关、可扩展的序列化结构数据格式。开发者可以通过Protobuf附带的工具生成代码并实现将结构化数据序列化的功能。 </p>
 <p>Protobuf中最<strong>基本的数据单元</strong>是message，是<strong>类似Go语言中结构体</strong>的存在。在message中可以嵌套message或其它的基础数据类型的成员。</p>
 <h1 id="2-定义-Message"><a href="#2-定义-Message" class="headerlink" title="2. 定义 Message"></a>2. 定义 Message</h1><p>首先看一个简单的例子，比如说你定义一个搜索请求的message，每一个搜索请求会包含一个搜索的字符串，返回第几页的结果，以及结果集的大小。在 <strong>.proto</strong>文件中定义如下：</p>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line">message SearchRequest &#123;</span><br><span class="line">  <span class="keyword">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -379,176 +384,33 @@
 </li>
 </ol>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/protobuf/" rel="tag"># protobuf</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.rrmai.com/2020/12/07/tsf-%E9%83%A8%E5%88%86%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="mai">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Technology Sharing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/07/tsf-%E9%83%A8%E5%88%86%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">tsf 部分组件介绍</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-07 15:39:59" itemprop="dateCreated datePublished" datetime="2020-12-07T15:39:59+08:00">2020-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-16 18:21:15" itemprop="dateModified" datetime="2020-12-16T18:21:15+08:00">2020-12-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>tsf 相关组件介绍：ribbon、feign、resilience4j、zuul &amp; scg、sleuth</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/07/tsf-%E9%83%A8%E5%88%86%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.rrmai.com/2020/12/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="mai">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Technology Sharing">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-03 13:49:55" itemprop="dateCreated datePublished" datetime="2020-12-03T13:49:55+08:00">2020-12-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-08 09:06:30" itemprop="dateModified" datetime="2020-12-08T09:06:30+08:00">2020-12-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/03/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/07/tsf-%E9%83%A8%E5%88%86%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D/" rel="prev" title="tsf 部分组件介绍">
+      <i class="fa fa-chevron-left"></i> tsf 部分组件介绍
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -601,6 +463,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Protobuf-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. Protobuf 是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%AE%9A%E4%B9%89-Message"><span class="nav-number">2.</span> <span class="nav-text">2. 定义 Message</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 指定字段类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5%E7%BC%96%E5%8F%B7"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 指定字段编号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%AE%9A%E4%B9%89%E5%AD%97%E6%AE%B5%E7%9A%84%E8%A7%84%E5%88%99"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 定义字段的规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E6%B7%BB%E5%8A%A0%E6%9B%B4%E5%A4%9A%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 添加更多消息类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E6%B7%BB%E5%8A%A0%E6%B3%A8%E9%87%8A"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 添加注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E4%BF%9D%E7%95%99%E5%AD%97%E6%AE%B5"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 保留字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-proto%E4%BC%9A%E7%94%9F%E6%88%90%E4%BB%80%E4%B9%88%E4%BB%A3%E7%A0%81"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 proto会生成什么代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">3. 标量类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">4. 默认值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">5. 枚举类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96Message%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.</span> <span class="nav-text">6. 使用其他Message类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E5%AF%BC%E5%85%A5%E6%B6%88%E6%81%AF%E5%AE%9A%E4%B9%89"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 导入消息定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E4%BD%BF%E7%94%A8proto2%E7%9A%84%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 使用proto2的消息类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%B5%8C%E5%A5%97%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="nav-number">7.</span> <span class="nav-text">7. 嵌套消息类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%9B%B4%E6%96%B0Message"><span class="nav-number">8.</span> <span class="nav-text">8. 更新Message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E6%9C%AA%E7%9F%A5%E5%AD%97%E6%AE%B5"><span class="nav-number">9.</span> <span class="nav-text">9. 未知字段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E6%98%A0%E5%B0%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">10.</span> <span class="nav-text">10. 映射类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E7%BB%99Message%E5%8A%A0%E5%8C%85%E5%90%8D"><span class="nav-number">11.</span> <span class="nav-text">11. 给Message加包名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-%E5%AE%9A%E4%B9%89%E6%9C%8D%E5%8A%A1"><span class="nav-number">12.</span> <span class="nav-text">12. 定义服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-JSON%E7%BC%96%E8%A7%A3%E7%A0%81"><span class="nav-number">13.</span> <span class="nav-text">13. JSON编解码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81"><span class="nav-number">14.</span> <span class="nav-text">14. 生成代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
