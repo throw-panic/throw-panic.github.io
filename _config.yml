@@ -3,17 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
+title: 小麦同学
+subtitle: '走过的每一步，都作数。'
 description: ''
 keywords:
-author: John Doe
-language: en
+author: rrmai
+language: zh-CN
 timezone: ''
 
 # URL
-## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
+url: http://blog.yarwen.com
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -97,9 +98,18 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next2
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 100
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:throw-panic/throw-panic.github.io.git
+  branch: master
+  
